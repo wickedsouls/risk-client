@@ -1,8 +1,8 @@
-import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
+import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 // Reducers
 
-import {rootSaga} from './sagas';
+import { rootSaga } from './sagas';
 
 interface Env {
   NODE_PATH: string;
@@ -18,12 +18,13 @@ declare global {
 }
 
 declare global {
-  interface RootState {
-    // reducer interface goes here
-  }
+  type RootState = any;
+  // interface RootState {
+  //   // reducer interface goes here
+  // }
 }
 
-/** Create reducer combined of all other. This is the global app state */
+/** Create reducer combined of all others. This is the global app state */
 const rootReducer = () =>
   combineReducers<RootState>({
     // list of all reducers

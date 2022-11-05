@@ -1,0 +1,37 @@
+@import "./src/styles/index";
+
+.main-room {
+  background: $color-delta;
+  min-height: 100vh;
+  .logo {
+    margin-left: 40%;
+  }
+}
+
+.container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.side-left {
+
+}
+
+.side-right {
+  width: 200px;
+  border: 1px dashed black;
+  text-align: center;
+}
+
+.games {
+  width: calc(100% - 400px - 20%);
+  text-align: center;
+  .controls {
+
+  }
+}
+
+.active-games{
+
+}

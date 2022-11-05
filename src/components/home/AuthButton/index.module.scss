@@ -1,0 +1,27 @@
+@import "../../../styles/index";
+
+.wrapper {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  .button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $color-beta;
+    box-shadow: 1px 1px 5px 3px $color-gama, 0px 0px 4px rgba($color-alpha, 0.25);
+    transition: 0.2s;
+
+  }
+  &:hover .button{
+    box-shadow: 0px 0px 3px 1px $color-gama, 0px 0px 4px rgba($color-alpha, 0.25);
+  }
+}
+
+
+
+.text {
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 20px;
+}

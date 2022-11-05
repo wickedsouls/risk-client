@@ -1,0 +1,27 @@
+@import "../../../styles/index";
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  line-height: 40px;
+  padding: 0 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: .2s;
+  &--dark {
+    background: $color-beta;
+    color: $color-white;
+    &:hover{
+      background: darken($color-beta, 7%);
+    }
+  }
+  &--light {
+  background: $color-gama;
+  color: $color-alpha;
+    &:hover{
+      background: darken($color-gama, 7%);
+    }
+  }
+}

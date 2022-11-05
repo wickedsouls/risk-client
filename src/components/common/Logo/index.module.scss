@@ -1,0 +1,15 @@
+@import "../../../styles/index";
+
+.logo{
+  strong{
+    font-size: 72px;
+    font-weight: 700;
+  }
+  span{
+    font-size: 30px;
+    letter-spacing: 10px;
+    font-weight: 500;
+    margin-left: -15px;
+    color: $color-beta;
+  }
+}

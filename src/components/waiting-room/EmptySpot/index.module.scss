@@ -1,0 +1,19 @@
+@import "../../../styles/index";
+
+.empty{
+  padding: 15px;
+  background: rgba($color-gama, .2);
+  border-radius: 6px;
+  border:1px dashed $color-gama;
+  text-align: left;
+  .button{
+    line-height: 30px;
+    width: 150px;
+  }
+  .waiting{
+    font-size: 14px;
+    text-align: center;
+    margin-top: 40px;
+    color: $color-alpha;
+  }
+}

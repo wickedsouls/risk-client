@@ -1,0 +1,10 @@
+@import "../../../styles/index";
+
+.controls{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .button{
+    width: 27%;
+  }
+}

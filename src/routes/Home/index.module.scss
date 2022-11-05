@@ -4,25 +4,34 @@
   width: 100%;
   height: 100vh;
   position: relative;
+  background: $color-delta;
 }
-.title{
+.logo{
   position: absolute;
   right: 10%;
   top: 10%;
-  strong{
-    font-size: 72px;
-    font-weight: 700;
-  }
-  span{
-    font-size: 30px;
-    letter-spacing: 10px;
-    font-weight: 500;
-    margin-left: -15px;
-  }
 }
-.map{
+.map-wrapper{
   position: absolute;
   bottom: 10%;
   left: 20%;
   width: 60%;
+}
+.map{
+  width: 100%;
+}
+.button{
+  position: absolute;
+  &--login{
+    right: 26%;
+    bottom: 20%;
+  }
+  &--register{
+    right: 50%;
+    bottom: 43%;
+  }
+  &--guest{
+    right: 20%;
+    bottom: 60%;
+  }
 }

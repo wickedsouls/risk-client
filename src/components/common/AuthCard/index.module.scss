@@ -1,0 +1,20 @@
+@import "../../../styles/index";
+
+.card{
+  width: 420px;
+  border-radius: 8px;
+  background: $color-gama;
+  height: 80vh;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 50px 40px;
+  box-shadow: 0px 0px 4px 2px rgba(0,0,0, .25);
+}
+.title{
+  font-size: 30px;
+  color: $color-alpha;
+  margin-bottom: 40px;
+}

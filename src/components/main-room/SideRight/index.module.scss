@@ -1,0 +1,36 @@
+@import "../../../styles/index";
+
+.side-right {
+  width: 200px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  text-align: center;
+  background: $color-gama;
+  padding: 0 20px;
+  position: relative;
+  //box-shadow: 0px 0px 5px 5px rgba($color-alpha, 0.25),0px 0px 2px 2px rgba($color-alpha, 0.4) ;
+}
+
+.title{
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+.ratings-name{
+
+}
+.ratings{
+  margin-top: 5px;
+  margin-bottom: 25px;
+  .line{
+    width: 100%;
+    height: 20px;
+    background: darken($color-gama, 6%);
+    transform: skewX(-25deg);
+    margin-bottom: 10px;
+  }
+  .points,
+  .kills,
+  .regions{
+  }
+}

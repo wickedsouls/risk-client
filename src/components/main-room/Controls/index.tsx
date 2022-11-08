@@ -16,22 +16,21 @@ export const Controls: React.FC<Props> = ({ showCreateGameModal }) => {
     <div className={cx('controls')}>
       <Button
         onClick={() => showCreateGameModal(true)}
-        text="Create custom game"
         className={cx('button')}
         color="dark"
-      />
+      >
+        Create custom game
+      </Button>
       <Button
         onClick={() => navigate(navigationPaths.waitingRoom)}
-        text="Join first available"
         className={cx('button')}
         color="dark"
-      />
-      <Button
-        onClick={() => null}
-        text="Go rated!"
-        className={cx('button')}
-        color="dark"
-      />
+      >
+        Join first available
+      </Button>
+      <Button onClick={() => null} className={cx('button')} color="dark">
+        Go rated!
+      </Button>
     </div>
   );
 };

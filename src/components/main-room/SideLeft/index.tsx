@@ -2,14 +2,21 @@ import React from 'react';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 import { Button } from '../../common/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../../store/auth';
+import { userState } from '../../../store/user';
 
 const cx = classNames.bind(styles);
 
 export const SideLeft = () => {
+  const dispatch = useDispatch();
+  const { username, email } = useSelector(userState);
   return (
     <div className={cx('side-left')}>
       <h2 className={cx('side-title')}>Profile</h2>
-      <div className={cx('player')}>
+      <div>{username}</div>
+      <div>{email}</div>
+      <div className={cx('player')} onClick={() => dispatch(logout())}>
         <div className={cx('image')} />
       </div>
       <ul className={cx('stats')}>

@@ -4,23 +4,25 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-interface Props {
-  onClick: () => void;
-  text: string;
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  onClick?: () => void;
   className: string;
   isLoading?: boolean;
+  text?: string;
   color: 'dark' | 'light';
 }
 export const Button: React.FC<Props> = ({
   onClick,
-  text,
   isLoading,
   className,
   color,
+  children,
+  ...props
 }) => {
   return (
-    <div
-      onClick={onClick}
+    <button
+      {...props}
+      onClick={() => !isLoading && onClick && onClick()}
       className={cx(
         'button',
         isLoading && 'button--loading',
@@ -28,7 +30,7 @@ export const Button: React.FC<Props> = ({
         className,
       )}
     >
-      {text}
-    </div>
+      {isLoading ? 'Loading...' : children}
+    </button>
   );
 };

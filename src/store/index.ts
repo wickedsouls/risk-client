@@ -1,6 +1,8 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 // Reducers
+import { userReducer, UserState } from './user';
+import { authReducer, AuthState } from './auth';
 
 import { rootSaga } from './sagas';
 
@@ -18,16 +20,17 @@ declare global {
 }
 
 declare global {
-  type RootState = any;
-  // interface RootState {
-  //   // reducer interface goes here
-  // }
+  interface RootState {
+    user: UserState;
+    auth: AuthState;
+  }
 }
 
 /** Create reducer combined of all others. This is the global app state */
 const rootReducer = () =>
   combineReducers<RootState>({
-    // list of all reducers
+    user: userReducer,
+    auth: authReducer,
   });
 
 /** Enable redux dev tools */

@@ -20,7 +20,7 @@ module.exports = {
         "react",
         "@typescript-eslint"
     ],
-  "ignorePatterns": ['.eslintrc.js'],
+  "ignorePatterns": ['.eslintrc.js', 'setupProxy.js'],
   "rules": {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',

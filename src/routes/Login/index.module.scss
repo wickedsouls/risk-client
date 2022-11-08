@@ -11,6 +11,19 @@
   right: 10%;
   top: 10%;
 }
+.form{
+  position: relative;
+}
+.error{
+  font-size: 14px;
+  color: $color-error;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(140%);
+  text-align: center;
+  width: 100%;
+}
 .input{
   margin-top: 20px;
 }

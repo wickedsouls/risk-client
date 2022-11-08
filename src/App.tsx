@@ -1,11 +1,15 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './routes/Home';
 import { Register } from './routes/Register';
 import { Login } from './routes/Login';
 import { navigationPaths } from './config/navigationPaths';
 import { MainRoom } from './routes/MainRoom';
 import { WaitingRoom } from './routes/WaitingRoom';
+import { AuthenticatedOnly } from './containers/AuthenticatedOnly';
+import { authenticateUser } from './utils/authenticateUser';
+
+authenticateUser();
 
 export const App = () => {
   return (
@@ -14,8 +18,22 @@ export const App = () => {
         <Route element={<Home />} path="" />
         <Route element={<Register />} path={navigationPaths.register} />
         <Route element={<Login />} path={navigationPaths.login} />
-        <Route element={<MainRoom />} path={navigationPaths.mainRoom} />
-        <Route element={<WaitingRoom />} path={navigationPaths.waitingRoom} />
+        <Route
+          element={
+            <AuthenticatedOnly>
+              <MainRoom />
+            </AuthenticatedOnly>
+          }
+          path={navigationPaths.mainRoom}
+        />
+        <Route
+          element={
+            <AuthenticatedOnly>
+              <WaitingRoom />
+            </AuthenticatedOnly>
+          }
+          path={navigationPaths.waitingRoom}
+        />
       </Routes>
     </BrowserRouter>
   );

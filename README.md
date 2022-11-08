@@ -17,6 +17,7 @@ https://www.figma.com/file/sMD94j4ccUhtbI5yNSDh4j/Risk-Game-Online?node-id=2%3A4
 - Typescript
 - Redux with redux saga
 - Communication with server via websockets
+- formik for handling forms
 - Storybook
 - React testing library
 - Cypress testing library

@@ -14,19 +14,12 @@
   justify-content: space-between;
 }
 
-.side-left {
-
-}
-
-.side-right {
-  width: 200px;
-  border: 1px dashed black;
-  text-align: center;
-}
-
 .games {
   width: calc(100% - 400px - 20%);
   text-align: center;
+  @include breakpoint-to($laptop-1300){
+    width: calc(100% - 400px - 5%);
+  }
   .controls {
 
   }

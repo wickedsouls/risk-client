@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 import { TextInput } from '../../common/TextInput';
 import { Button } from '../../common/Button';
 import { svg } from '../../../assets/svg/svg';
-import { useNavigate } from 'react-router-dom';
-import { navigationPaths } from '../../../config/navigationPaths';
+import { useDispatch, useSelector } from 'react-redux';
+import { createGame } from '../../../store/main-room';
+import { ModalLayout } from '../../common/ModalLayout';
+import { appState, closeModal, ModalType } from '../../../store/app';
 
 const cx = classNames.bind(styles);
 
-interface Props {
-  onClose: () => void;
-  isVisible?: boolean;
-}
-
-export const CreateGame: React.FC<Props> = ({ isVisible, onClose }) => {
-  const [min, setMin] = useState(6);
+export const CreateGame = () => {
+  const { modal } = useSelector(appState);
+  const [min, setMin] = useState(2);
   const [max, setMax] = useState(6);
   const [isPrivate, setPrivate] = useState(false);
-  const navigate = useNavigate();
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  if (!isVisible) return null;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setPrivate(false);
+    setPassword('');
+    setMin(2);
+    setMax(6);
+  }, []);
+
+  if (modal !== ModalType.CreateGame) return null;
 
   const minSelection = [2, 3, 4, 5, 6].map((item) => {
     return (
@@ -44,9 +52,26 @@ export const CreateGame: React.FC<Props> = ({ isVisible, onClose }) => {
       </div>
     );
   });
+
+  const onClose = () => {
+    dispatch(closeModal());
+  };
+
+  const submit = () => {
+    if (isPrivate && !password) {
+      return setError('Password is required');
+    }
+    dispatch(
+      createGame({
+        password,
+        isPrivate,
+        maxPlayers: max,
+        minPlayers: min,
+      }),
+    );
+  };
   return (
-    <>
-      <div className={cx('background')} onClick={onClose} />
+    <ModalLayout onClose={onClose}>
       <div className={cx('modal')}>
         <h2 className={cx('title')}>Create custom game</h2>
         <img src={svg.times} alt="" className={cx('close')} onClick={onClose} />
@@ -74,17 +99,22 @@ export const CreateGame: React.FC<Props> = ({ isVisible, onClose }) => {
               </div>
             </div>
             {isPrivate && (
-              <TextInput placeholder="Password" className={cx('input')} />
+              <>
+                <TextInput
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  placeholder="Password"
+                  className={cx('input')}
+                />
+                {error && <div className={cx('error')}>{error}</div>}
+              </>
             )}
           </div>
         </div>
-        <Button
-          color="light"
-          onClick={() => navigate(navigationPaths.waitingRoom)}
-          className={cx('button')}
-          text="Create"
-        />
+        <Button color="light" onClick={submit} className={cx('button')}>
+          Create
+        </Button>
       </div>
-    </>
+    </ModalLayout>
   );
 };

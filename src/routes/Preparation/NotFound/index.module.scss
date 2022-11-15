@@ -1,0 +1,37 @@
+@import "../../../styles/index";
+
+.not-found{
+  background: $color-delta;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .title{
+    font-size: 50px;
+    text-align: center;
+    font-weight: 300;
+  }
+  .desc{
+    margin-left: 20px;
+    font-weight: 300;
+    width: 70px;
+    font-size: 14px;
+    strong{
+      font-weight: 500;
+    }
+  }
+  .button{
+    position: absolute;
+    color: $color-beta;
+    bottom: -150px;
+    font-size: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

@@ -3,5 +3,6 @@ export const navigationPaths = {
   login: '/login',
   register: '/register',
   mainRoom: '/main-room',
-  waitingRoom: '/waiting-room',
+  preparation: '/preparation',
+  game: '/game',
 };

@@ -44,7 +44,7 @@ export const Register = () => {
           validateOnChange={false}
           validateOnBlur={false}
           initialValues={{ username: '', email: '', password: '' }}
-          onSubmit={async (values) => dispatch(register.request(values))}
+          onSubmit={async (values) => dispatch(register(values))}
           validationSchema={validationSchema}
         >
           <Form>

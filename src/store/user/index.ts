@@ -1,5 +1,5 @@
 export * from './userSaga';
-export * from './userReducer';
-export * from './userActions';
+export * from './userSlice';
+export * from './types';
 
 export const userState = (state: RootState) => state.user;

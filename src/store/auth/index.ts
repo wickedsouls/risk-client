@@ -1,5 +1,5 @@
-export * from './authReducer';
 export * from './authSaga';
-export * from './authActions';
+export * from './authSlice';
+export * from './types';
 
 export const authState = (state: RootState) => state.auth;

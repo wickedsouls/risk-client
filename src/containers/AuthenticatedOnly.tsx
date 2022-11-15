@@ -6,7 +6,7 @@ import { navigationPaths } from '../config/navigationPaths';
 import { getUser, userState } from '../store/user';
 import { browserStorage, StorageKey } from '../utils/browserStorage';
 import jwtDecode from 'jwt-decode';
-import { UserPayload } from '../store/user/types';
+import { User } from '../store/user';
 
 export const AuthenticatedOnly: React.FC<PropsWithChildren> = ({
   children,
@@ -14,13 +14,15 @@ export const AuthenticatedOnly: React.FC<PropsWithChildren> = ({
   const { isAuthenticated } = useSelector(authState);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { id } = useSelector(userState);
+  const user = useSelector(userState);
+  const { id } = user.data;
+
   const accessToken = browserStorage.getItem(StorageKey.ACCESS_TOKEN);
 
   useEffect(() => {
     if (accessToken && !id) {
-      const user = jwtDecode<UserPayload>(accessToken);
-      dispatch(getUser.request({ id: user.id }));
+      const user = jwtDecode<User>(accessToken);
+      dispatch(getUser({ id: user.id }));
     }
   }, [id, dispatch]);
 

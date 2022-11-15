@@ -1,0 +1,15 @@
+@import "../../../styles/index";
+
+.controls{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  .button{
+    width: 27%;
+    @include breakpoint-to($laptop-1300){
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+}

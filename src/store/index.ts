@@ -1,46 +1,34 @@
-import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 // Reducers
-import { userReducer, UserState } from './user';
-import { authReducer, AuthState } from './auth';
-
+import { userSlice, UserState } from './user';
+import { authSlice, AuthState } from './auth';
+import { appSlice, AppState } from './app';
+import { mainRoomSlice, MainRoomState } from './main-room';
+import { gameSlice, GameState } from './game';
 import { rootSaga } from './sagas';
-
-interface Env {
-  NODE_PATH: string;
-  REACT_APP_MAP_KEY: string;
-  REACT_APP_SERVER_URL: string;
-}
-
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-    _env_: Env;
-  }
-}
 
 declare global {
   interface RootState {
     user: UserState;
     auth: AuthState;
+    app: AppState;
+    mainRoom: MainRoomState;
+    game: GameState;
   }
 }
 
-/** Create reducer combined of all others. This is the global app state */
-const rootReducer = () =>
-  combineReducers<RootState>({
-    user: userReducer,
-    auth: authReducer,
-  });
-
-/** Enable redux dev tools */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const sagaMiddleware = createSagaMiddleware();
 
-export const store = createStore(
-  rootReducer(),
-  composeEnhancers(applyMiddleware(sagaMiddleware)),
-);
+export const store = configureStore({
+  reducer: {
+    user: userSlice.reducer,
+    auth: authSlice.reducer,
+    app: appSlice.reducer,
+    mainRoom: mainRoomSlice.reducer,
+    game: gameSlice.reducer,
+  },
+  middleware: [sagaMiddleware],
+});
 
 sagaMiddleware.run(rootSaga);

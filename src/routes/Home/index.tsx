@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 import { svg } from '../../assets/svg/svg';
-import { AuthButton } from '../../components/home/AuthButton';
+import { AuthButton } from './AuthButton';
 import { Logo } from '../../components/common/Logo';
 import { navigationPaths } from '../../config/navigationPaths';
 

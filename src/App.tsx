@@ -5,7 +5,7 @@ import { Register } from './routes/Register';
 import { Login } from './routes/Login';
 import { navigationPaths } from './config/navigationPaths';
 import { MainRoom } from './routes/MainRoom';
-import { WaitingRoom } from './routes/WaitingRoom';
+import { Preparation } from './routes/Preparation';
 import { AuthenticatedOnly } from './containers/AuthenticatedOnly';
 import { authenticateUser } from './utils/authenticateUser';
 
@@ -29,10 +29,10 @@ export const App = () => {
         <Route
           element={
             <AuthenticatedOnly>
-              <WaitingRoom />
+              <Preparation />
             </AuthenticatedOnly>
           }
-          path={navigationPaths.waitingRoom}
+          path={navigationPaths.preparation + '/:gameId/:type'}
         />
       </Routes>
     </BrowserRouter>

@@ -1,13 +1,22 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import * as actions from './authActions';
 import axios, { AxiosResponse } from 'axios';
 import { apiEndpoints } from '../../config/apiEndpoints';
 import { formatHttpResponseError } from '../../utils/formatResponseError';
 import { LoginResponse, RegistrationResponse } from './types';
 import { browserStorage, StorageKey } from '../../utils/browserStorage';
-import { clearUserData } from '../user';
+import { authHeaders } from '../../utils/authHeaders';
+import {
+  login,
+  register,
+  logout,
+  registerDone,
+  registerFailed,
+  loginFailed,
+  loginDone,
+  authenticate,
+} from './';
 
-function* register(action: ReturnType<typeof actions.register.request>) {
+function* registerRequest(action: ReturnType<typeof register>) {
   try {
     const { data }: AxiosResponse<RegistrationResponse> = yield call(
       axios.post,
@@ -15,15 +24,17 @@ function* register(action: ReturnType<typeof actions.register.request>) {
       action.payload,
     );
     const { accessToken } = data;
+    authHeaders.set(accessToken);
     browserStorage.setItem(StorageKey.ACCESS_TOKEN, accessToken);
-    yield put(actions.register.success({ accessToken }));
+    yield put(registerDone());
+    yield put(authenticate(accessToken));
   } catch (e) {
     const err = formatHttpResponseError(e);
-    yield put(actions.register.failure(err));
+    yield put(registerFailed(err));
   }
 }
 
-function* login(action: ReturnType<typeof actions.login.request>) {
+function* loginRequest(action: ReturnType<typeof login>) {
   try {
     const { data }: AxiosResponse<LoginResponse> = yield call(
       axios.post,
@@ -31,21 +42,23 @@ function* login(action: ReturnType<typeof actions.login.request>) {
       action.payload,
     );
     const { accessToken } = data;
+    authHeaders.set(accessToken);
     browserStorage.setItem(StorageKey.ACCESS_TOKEN, accessToken);
-    yield put(actions.login.success({ accessToken }));
+    yield put(loginDone());
+    yield put(authenticate(accessToken));
   } catch (e) {
     const err = formatHttpResponseError(e);
-    yield put(actions.login.failure(err));
+    yield put(loginFailed(err));
   }
 }
 
-function* logout() {
+function logoutRequest() {
   browserStorage.deleteItem(StorageKey.ACCESS_TOKEN);
-  yield put(clearUserData());
+  authHeaders.delete();
 }
 
 export function* authSaga() {
-  yield all([takeLatest(actions.register.request, register)]);
-  yield all([takeLatest(actions.login.request, login)]);
-  yield all([takeLatest(actions.logout, logout)]);
+  yield all([takeLatest(register, registerRequest)]);
+  yield all([takeLatest(login, loginRequest)]);
+  yield all([takeLatest(logout, logoutRequest)]);
 }

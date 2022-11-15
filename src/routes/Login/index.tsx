@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 import { Logo } from '../../components/common/Logo';
@@ -35,8 +35,8 @@ export const Login = () => {
           validateOnChange={false}
           validateOnBlur={false}
           validationSchema={validationSchema}
-          initialValues={{ username: '', password: '' }}
-          onSubmit={async (values) => dispatch(login.request(values))}
+          initialValues={{ username: 'wicked', password: 'secret' }}
+          onSubmit={async (values) => dispatch(login(values))}
         >
           <Form className={cx('form')}>
             <TextInput

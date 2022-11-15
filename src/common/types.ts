@@ -3,3 +3,8 @@ export interface HttpResponseError {
   message: string;
   status: string;
 }
+
+export interface GameError {
+  error: boolean;
+  message: string;
+}

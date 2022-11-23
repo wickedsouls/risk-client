@@ -8,6 +8,7 @@ import rifleman from './rifleman.svg';
 import riflemanWhite from './rifleman-white.svg';
 import badge from './badge.svg';
 import attack from './attack.svg';
+import send from './send.svg';
 
 export const svg = {
   homeMap,
@@ -20,4 +21,5 @@ export const svg = {
   riflemanWhite,
   badge,
   attack,
+  send,
 };

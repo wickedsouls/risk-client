@@ -29,6 +29,7 @@ import { MoveAction } from '../../components/modals/MoveAction';
 import { ModalType } from '../../store/app';
 import { ContinentTaken } from '../../components/modals/ContinentTaken';
 import { EliminatePlayer } from '../../components/modals/EliminatePlayer';
+import { Chat } from './Chat';
 
 const cx = classNames.bind(styles);
 
@@ -171,6 +172,7 @@ export const Game = () => {
         armiesThisTurn={activeGame.armiesThisTurn}
         myTurn={myTurn}
       />
+      <Chat />
     </div>
   );
 };

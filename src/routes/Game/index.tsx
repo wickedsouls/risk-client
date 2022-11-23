@@ -31,6 +31,7 @@ import { ContinentTaken } from '../../components/modals/ContinentTaken';
 import { EliminatePlayer } from '../../components/modals/EliminatePlayer';
 import { Chat } from './Chat';
 import { WinTheGame } from '../../components/modals/WinTheGame';
+import { ContinentsList } from './ContinentsList';
 
 const cx = classNames.bind(styles);
 
@@ -122,6 +123,7 @@ export const Game = () => {
 
   return (
     <div className={cx('game', `game--${myColor?.color}`)}>
+      <ContinentsList />
       <ContinentTaken />
       <EliminatePlayer />
       <MoveAction

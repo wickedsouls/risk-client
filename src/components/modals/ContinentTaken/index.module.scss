@@ -1,0 +1,47 @@
+@import "../../../styles/index";
+
+.layout{
+  background: $color-white;
+}
+.modal{
+  width: 400px;
+  background: $color-white;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+.title{
+  color: $color-black;
+  text-align: center;
+  .zone{
+    font-size: 42px;
+    font-weight: 700;
+  }
+  span{
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .user{
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 1px 3px;
+    @include player-background-color;
+  }
+}
+.text{
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 30px;
+  font-style: italic;
+  strong{
+    text-transform: capitalize;
+  }
+  span{
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: underline;
+  }
+}

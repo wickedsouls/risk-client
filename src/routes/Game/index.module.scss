@@ -1,0 +1,54 @@
+@import "./src/styles/index";
+
+.game{
+  position: relative;
+  min-height: 100vh;
+  text-align: center;
+  box-sizing: border-box;
+  &--black{
+    border-left: 15px solid $player-black;
+    border-right: 15px solid $player-black;
+    border-bottom: 10px solid $player-black;
+  }
+  &--yellow{
+    border-left: 15px solid $player-yellow;
+    border-right: 15px solid $player-yellow;
+    border-bottom: 10px solid $player-yellow;
+  }
+  &--green{
+    border-left: 15px solid $player-green;
+    border-right: 15px solid $player-green;
+    border-bottom: 10px solid $player-green;
+  }
+  &--red{
+    border-left: 15px solid $player-red;
+    border-right: 15px solid $player-red;
+    border-bottom: 10px solid $player-red;
+  }
+  &--blue{
+    border-left: 15px solid $player-blue;
+    border-right: 15px solid $player-blue;
+    border-bottom: 10px solid $player-blue;
+  }
+  &--white{
+    border-left: 15px solid $player-white;
+    border-right: 15px solid $player-white;
+    border-bottom: 10px solid $player-white;
+  }
+}
+
+.shape{
+  fill:#A5C9CA;
+  &:hover{
+    fill:#2C3333;
+  }
+}
+
+.circle{
+  fill: #2C3333;
+}
+.map{
+  height: 96vh;
+  margin: auto;
+  padding-top: 10vh;
+}

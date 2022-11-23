@@ -1,0 +1,42 @@
+@import "../../../styles/index";
+
+.layout{
+  background: $color-white;
+}
+.modal{
+  width: 400px;
+  background: $color-white;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+}
+.title{
+  font-size: 42px;
+  color: $color-black;
+  font-weight: 700;
+  text-align: center;
+}
+.text-1{
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 25px;
+}
+.text-2{
+  font-size: 16px;
+  font-weight: 300;
+  margin-top: 20px;
+}
+.row{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 380px;
+}
+.army{
+  fill: $color-black;
+  margin: 0 5px;
+  width: 35px;
+  height: 35px;
+  margin-bottom: 4px;
+}

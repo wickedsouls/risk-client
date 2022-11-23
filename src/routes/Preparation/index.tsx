@@ -13,8 +13,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { JoinPrivateGame } from '../../components/modals/JoinPrivateGame';
 import { SingleButtonNotification } from '../../components/modals/SingleButtonNotification';
 import { navigationPaths } from '../../config/navigationPaths';
-import { GameErrors } from '../../common/errors';
+import { ErrorCodes } from '../../common/errors';
 import { NotFound } from './NotFound';
+import { useRedirectActiveGame } from '../../hooks/useRedirectActiveGame';
 
 const cx = classNames.bind(styles);
 
@@ -24,6 +25,8 @@ export const Preparation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { type, gameId } = useParams<{ gameId: string; type: string }>();
+
+  useRedirectActiveGame();
 
   useEffect(() => {
     if (connected && gameId && !activeGame && type == 'public') {
@@ -43,12 +46,13 @@ export const Preparation = () => {
     navigate(navigationPaths.mainRoom);
   };
 
-  if (errors?.joinGame === GameErrors.GAME_NOT_FOUND) return <NotFound />;
+  if (errors?.joinGame === ErrorCodes.GAME_NOT_FOUND) return <NotFound />;
 
   return (
     <div className={cx('preparation')}>
       {type === 'private' && gameId && <JoinPrivateGame gameId={gameId} />}
       <SingleButtonNotification
+        text="Back to the main room"
         onClick={onClick}
         title="Game was canceled"
         isVisible={gameCanceled}

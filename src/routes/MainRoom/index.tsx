@@ -8,30 +8,17 @@ import { SideRight } from './SideRight';
 import { GamesList } from './GamesList';
 import { CreateGame } from '../../components/modals/CreateGame';
 import { useDispatch, useSelector } from 'react-redux';
-import { appState, closeModal, ModalType, openModal } from '../../store/app';
+import { appState, ModalType, openModal } from '../../store/app';
 import { getAllGames } from '../../store/main-room';
-import { useNavigate } from 'react-router-dom';
-import { navigationPaths } from '../../config/navigationPaths';
-import { gameState, GameStatus } from '../../store/game';
+import { useRedirectActiveGame } from '../../hooks/useRedirectActiveGame';
 
 const cx = classNames.bind(styles);
 
 export const MainRoom = () => {
-  const { modal, connected } = useSelector(appState);
-  const { activeGame } = useSelector(gameState);
+  const { connected } = useSelector(appState);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const gameType = activeGame?.isPrivate ? 'private' : 'public';
-    if (activeGame?.gameStatus === GameStatus.Registering) {
-      navigate(
-        `${navigationPaths.preparation}/${activeGame.gameId}/${gameType}`,
-      );
-    } else if (activeGame?.gameStatus === GameStatus.InProgress) {
-      navigate(`${navigationPaths.game}/${activeGame.gameId}/${gameType}`);
-    }
-  }, [activeGame]);
+  useRedirectActiveGame();
 
   useEffect(() => {
     if (connected) {

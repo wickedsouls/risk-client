@@ -1,9 +1,18 @@
 import { ClientSocket } from './types';
 import { eventChannel } from 'redux-saga';
 import values from 'lodash.values';
-import { cancelGameDone, Game } from '../game';
+import {
+  cancelGameDone,
+  updateGame,
+  receiveMessage,
+  Game,
+  startGameDone,
+  selectZoneFrom,
+  updateZoneFrom,
+  updateZoneTo,
+  updateZoneSelected,
+} from '../game';
 import { getAllGamesDone } from '../main-room';
-import { updateGame, receiveMessage } from '../game';
 import { setConnected } from '../app';
 
 export function gameEventReceiver(socket: ClientSocket) {
@@ -23,6 +32,21 @@ export function gameEventReceiver(socket: ClientSocket) {
     });
     socket.on('set/CANCEL_GAME', () => {
       emit(cancelGameDone());
+    });
+    socket.on('set/START_GAME', (data) => {
+      emit(startGameDone(data));
+    });
+    socket.on('set/UPDATE_GAME', (data) => {
+      emit(updateGame(data));
+    });
+    socket.on('set/SELECT_ZONE_FROM', (data) => {
+      emit(updateZoneFrom(data));
+    });
+    socket.on('set/SELECT_ZONE_TO', (data) => {
+      emit(updateZoneTo(data));
+    });
+    socket.on('set/SELECT_ZONE', (data) => {
+      emit(updateZoneSelected(data));
     });
     socket.on('disconnect', () => {
       console.warn('disconnected');

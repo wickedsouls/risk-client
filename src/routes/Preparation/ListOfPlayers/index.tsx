@@ -19,7 +19,7 @@ export const ListOfPlayers: React.FC<Props> = (props) => {
       return (
         <div className={cx('player', className)} key={player.id}>
           <div className={cx('image')}>
-            <img src={svg.rifleman} className={cx('icon')} alt="" />
+            <img src={svg.riflemanWhite} className={cx('icon')} alt="" />
           </div>
           <div className={cx('info')}>
             <div className={cx('title')}>Gladiator</div>

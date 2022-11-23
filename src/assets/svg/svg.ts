@@ -5,7 +5,9 @@ import times from './times.svg';
 import check from './check.svg';
 import earthPart from './earth-part.svg';
 import rifleman from './rifleman.svg';
+import riflemanWhite from './rifleman-white.svg';
 import badge from './badge.svg';
+import attack from './attack.svg';
 
 export const svg = {
   homeMap,
@@ -15,5 +17,7 @@ export const svg = {
   check,
   earthPart,
   rifleman,
+  riflemanWhite,
   badge,
+  attack,
 };

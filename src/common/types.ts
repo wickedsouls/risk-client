@@ -1,3 +1,5 @@
+import { ErrorCodes } from './errors';
+
 export interface HttpResponseError {
   statusText: string;
   message: string;
@@ -6,5 +8,5 @@ export interface HttpResponseError {
 
 export interface GameError {
   error: boolean;
-  message: string;
+  message: ErrorCodes;
 }

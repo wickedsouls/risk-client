@@ -8,6 +8,7 @@ import { MainRoom } from './routes/MainRoom';
 import { Preparation } from './routes/Preparation';
 import { AuthenticatedOnly } from './containers/AuthenticatedOnly';
 import { authenticateUser } from './utils/authenticateUser';
+import { Game } from './routes/Game';
 
 authenticateUser();
 
@@ -33,6 +34,14 @@ export const App = () => {
             </AuthenticatedOnly>
           }
           path={navigationPaths.preparation + '/:gameId/:type'}
+        />
+        <Route
+          element={
+            <AuthenticatedOnly>
+              <Game />
+            </AuthenticatedOnly>
+          }
+          path={navigationPaths.game + '/:gameId/:type'}
         />
       </Routes>
     </BrowserRouter>

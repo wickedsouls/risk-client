@@ -1,0 +1,87 @@
+@import "../../../styles/index";
+
+.game-controls{
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  user-select: none;
+}
+
+.armies-remaining{
+  margin-bottom: 10px;
+  .title{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    user-select: none;
+  }
+  .info{
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 10px;
+  }
+  .row{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+.rifleman{
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  user-select: none;
+}
+.attack{
+  text-align: center;
+  .text{
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .row{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}
+.move{
+  text-align: center;
+  .text{
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .button{
+    margin: auto;
+    margin-bottom: 10px;
+  }
+}
+.button{
+  width: 150px;
+  border-radius: 4px;
+  color: $color-white;
+  font-size: 16px;
+  line-height: 28px;
+  margin: auto 10px;
+  cursor: pointer;
+  user-select: none;
+  @include player-background-color;
+}
+
+.other-player{
+  font-size: 16px;
+  margin-bottom: 20px;
+  .name{
+    font-size: 24px;
+    text-transform: capitalize;
+    @include player-background-color;
+    padding: 3px 5px 2px 12px;
+    &--black{
+      color: $color-white;
+    }
+  }
+}

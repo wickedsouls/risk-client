@@ -4,3 +4,44 @@
   margin: auto;
 }
 
+@mixin player-background-color{
+  &--white {
+    background:$player-white;
+  }
+  &--green{
+    background: $player-green;
+  }
+  &--red{
+    background: $player-red;
+  }
+  &--blue{
+    background: $player-blue;
+  }
+  &--yellow{
+    background: $player-yellow;
+  }
+  &--black{
+    background: $player-black;
+  }
+}
+
+@mixin player-color{
+  &--white {
+    color:$player-white;
+  }
+  &--green{
+    color: $player-green;
+  }
+  &--red{
+    color: $player-red;
+  }
+  &--blue{
+    color: $player-blue;
+  }
+  &--yellow{
+    color: $player-yellow;
+  }
+  &--black{
+    color: $player-black;
+  }
+}

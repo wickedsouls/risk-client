@@ -1,0 +1,83 @@
+@import "../../../styles/index";
+
+.map{
+  g{
+
+  }
+  path{
+    cursor: pointer;
+    transition: .05s;
+    &:hover{
+      //opacity: .8;
+    }
+  }
+  text{
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+.zone{
+  fill:red;
+  stroke: black;
+  stroke-width: 1;
+  &--white {
+    fill:$player-white;
+  }
+  &--green{
+    fill: $player-green;
+  }
+  &--red{
+    fill: $player-red;
+  }
+  &--blue{
+    fill: $player-blue;
+  }
+  &--yellow{
+    fill: $player-yellow;
+  }
+  &--black{
+    fill: $player-black;
+  }
+  &--active{
+    //opacity: 0.8;
+    stroke-width: 2;
+    filter:saturate(2) brightness(70%);
+  }
+}
+
+.continent{
+  stroke:#000000;
+  stroke-width:2;
+  &--with-hover{
+    fill: rgba(0,0,0, 0);
+    &:hover{
+      fill: rgba(0,0,0, .2)
+    }
+  }
+  &--conquered{
+    stroke-width: 3;
+    stroke-dasharray: 2 2;
+  }
+  &--white {
+    stroke: darken($player-white, 25%);
+  }
+  &--green{
+    stroke: darken($player-green, 25%);
+  }
+  &--red{
+    stroke: darken($player-red, 25%);
+  }
+  &--blue{
+    stroke: $player-blue;
+    stroke: darken($player-blue, 25%);
+  }
+  &--yellow{
+    stroke: $player-yellow;
+    stroke: darken($player-yellow, 25%);
+  }
+  &--black{
+    stroke: $player-black;
+    stroke: darken($player-black, 25%);
+  }
+}

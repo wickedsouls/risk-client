@@ -30,8 +30,8 @@
         margin-right: 10px;
         text-transform: capitalize;
         &--white {
-          background:lighten($player-white, 40%);
-          color:darken($player-white, 10%);
+          background:darken($player-white, 3%);
+          color:darken($player-white, 40%);
         }
         &--green{
           background: lighten($player-green, 40%);
@@ -47,7 +47,7 @@
         }
         &--yellow{
           background: lighten($player-yellow, 30%);
-          color:darken($player-yellow, 10%);
+          color:darken($player-yellow, 20%);
         }
         &--black{
           background: lighten($player-black, 40%);

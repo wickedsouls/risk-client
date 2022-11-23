@@ -3,33 +3,40 @@ import { ModalLayout } from '../../common/ModalLayout';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-import { gameState, showGameModal } from '../../../store/game';
+import { clearActiveGame, gameState, showGameModal } from '../../../store/game';
 import { ModalType } from '../../../store/app';
 import { userState } from '../../../store/user';
+import { navigationPaths } from '../../../config/navigationPaths';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 export const EliminatePlayer = () => {
   const { gameModal } = useSelector(gameState);
   const user = useSelector(userState);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const close = () => {
-    dispatch(showGameModal({}));
-  };
+  const { username, color, playerId } = gameModal;
 
   useEffect(() => {
-    if (gameModal.type === ModalType.ContinentTaken) {
+    if (gameModal.type === ModalType.Defeat) {
       setTimeout(() => {
-        // close();
+        if (playerId !== user.data.id) close();
       }, 3000);
     }
   }, [gameModal]);
 
   if (gameModal.type !== ModalType.Defeat) return null;
 
-  const { username, color, playerId } = gameModal;
+  const goBack = () => {
+    dispatch(clearActiveGame());
+    navigate(navigationPaths.mainRoom);
+  };
+
+  const close = () => {
+    dispatch(showGameModal({}));
+  };
 
   const OthersContent = (
     <>
@@ -46,11 +53,18 @@ export const EliminatePlayer = () => {
       <h3 className={cx('defeat')}>
         <span>You have been eliminated</span>
       </h3>
+      <div onClick={goBack} className={cx('link')}>
+        Go back to the game selection
+      </div>
+      <div className={cx('or')}>Or</div>
+      <div className={cx('spectate')} onClick={close}>
+        Continue watching the game
+      </div>
     </>
   );
   return (
     <ModalLayout onClose={close} className={cx('layout')}>
-      <div className={cx('modal')} onClick={close}>
+      <div className={cx('modal')}>
         <>{user.data.id === playerId ? YouLose : OthersContent}</>
       </div>
     </ModalLayout>

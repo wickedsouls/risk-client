@@ -19,6 +19,9 @@
   align-items: center;
   border-right: 6px solid #d04d41;
   transition: .2s;
+  &--eliminated{
+    opacity: .3;
+  }
   &--active{
     transform: scale(1.15);
   }

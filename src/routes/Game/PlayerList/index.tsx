@@ -15,12 +15,14 @@ export const PlayerList: React.FC<Props> = ({ players, currentPlayerId }) => {
   if (!players || !currentPlayerId) return null;
   const renderPlayers = () => {
     return players.map((player) => {
+      console.log(player);
       const color = playerColors[player.color || ''];
       return (
         <div
           className={cx(
             'player',
             currentPlayerId === player.id && 'player--active',
+            player.status === 'defeat' && 'player--eliminated',
           )}
           style={{
             borderRight: `6px solid ${color}`,

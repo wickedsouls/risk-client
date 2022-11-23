@@ -30,6 +30,7 @@ import { ModalType } from '../../store/app';
 import { ContinentTaken } from '../../components/modals/ContinentTaken';
 import { EliminatePlayer } from '../../components/modals/EliminatePlayer';
 import { Chat } from './Chat';
+import { WinTheGame } from '../../components/modals/WinTheGame';
 
 const cx = classNames.bind(styles);
 
@@ -148,6 +149,7 @@ export const Game = () => {
         onClose={() => showAttackNotification(false)}
         isVisible={attackNotification}
       />
+      <WinTheGame />
       <PlayerList
         players={activeGame?.players}
         currentPlayerId={currentPlayerId}

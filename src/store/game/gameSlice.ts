@@ -41,6 +41,11 @@ export const gameSlice = createSlice({
     ) => {
       state.gameModal = action.payload;
     },
+    clearActiveGame: (state) => {
+      state.activeGame = undefined;
+      state.chat = [];
+      state.interactions = {};
+    },
     joinGame: (
       state,
       action: PayloadAction<{ gameId: string; password?: string }>,
@@ -214,4 +219,5 @@ export const {
   updateZoneSelected,
   selectZone,
   showGameModal,
+  clearActiveGame,
 } = gameSlice.actions;

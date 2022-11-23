@@ -1,0 +1,24 @@
+@import "../../../styles/index";
+
+.layout{
+  background: $color-white;
+}
+.modal{
+  width: 400px;
+  background: $color-white;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+.title{
+  color: $color-black;
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+.link{
+  font-size: 14px;
+  text-decoration: underline;
+  margin-top: 20px;
+  cursor: pointer;
+}

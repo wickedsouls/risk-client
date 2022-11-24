@@ -187,6 +187,10 @@ export const gameSlice = createSlice({
     finishAttack: () => {
       null;
     },
+    surrender: (state) => {
+      state.activeGame = undefined;
+      state.chat = [];
+    },
   },
 });
 
@@ -220,4 +224,5 @@ export const {
   selectZone,
   showGameModal,
   clearActiveGame,
+  surrender,
 } = gameSlice.actions;

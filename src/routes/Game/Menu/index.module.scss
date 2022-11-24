@@ -1,0 +1,43 @@
+@import "../../../styles/index";
+
+.menu{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  .burger{
+    width: 26px;
+    cursor: pointer;
+  }
+  .overlay{
+    width: 200px;
+    height: 400px;
+    background: $color-white;
+    border:1px solid $color-grey-100;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(0,0,0, .5);
+    padding: 30px 20px;
+    text-align: left;
+    padding-top: 50px;
+  }
+  .times{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 16px;
+    cursor: pointer;
+  }
+  .option{
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .2s;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}

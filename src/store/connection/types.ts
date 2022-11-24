@@ -63,6 +63,7 @@ export interface ClientToServerEvents {
   'request/SELECT_ZONE_FROM': (payload: { zone?: string }) => void;
   'request/SELECT_ZONE_TO': (payload: { zone?: string }) => void;
   'request/FINISH_ATTACK': () => void;
+  'request/SURRENDER': () => void;
 }
 
 export type ClientSocket = Socket<ServerToClientEvents, ClientToServerEvents>;

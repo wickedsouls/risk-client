@@ -28,6 +28,7 @@ import {
   startGame,
   startGameDone,
   startGameFailed,
+  surrender,
 } from '../game';
 import { Game } from '../game';
 import { store } from '../index';
@@ -120,6 +121,9 @@ export function* gameEventEmitter(socket: ClientSocket) {
     }),
     takeEvery(finishAttack, () => {
       socket.emit('request/FINISH_ATTACK');
+    }),
+    takeEvery(surrender, () => {
+      socket.emit('request/SURRENDER');
     }),
   ]);
 }

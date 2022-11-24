@@ -4,22 +4,63 @@ import classNames from 'classnames/bind';
 import { svg } from '../../../assets/svg/svg';
 import { Confirmation } from '../../../components/modals/Confirmation';
 import { useDispatch } from 'react-redux';
-import { surrender } from '../../../store/game';
-import { useNavigate } from 'react-router-dom';
+import {
+  clearActiveGame,
+  leaveGame,
+  PlayerStatus,
+  surrender,
+} from '../../../store/game';
+import { useGetMyPlayerData } from '../../../hooks/useGetMyPlayerData';
 import { navigationPaths } from '../../../config/navigationPaths';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 export const Menu = () => {
   const [isOpen, openOverlay] = useState(false);
   const [surrenderConfirm, showSurrenderConfirm] = useState(false);
-  const dispatch = useDispatch();
+  const player = useGetMyPlayerData();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSurrender = () => {
     showSurrenderConfirm(false);
     dispatch(surrender());
-    navigate(navigationPaths.mainRoom);
   };
+
+  const leaveTheGame = () => {
+    navigate(navigationPaths.mainRoom);
+    dispatch(clearActiveGame());
+  };
+
+  const renderSurrenderAndLeave = () => {
+    if (!player?.status) {
+      return (
+        <div
+          className={cx('option')}
+          onClick={() => {
+            showSurrenderConfirm(true);
+            openOverlay(false);
+          }}
+        >
+          Surrender
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={cx('option')}
+          onClick={() => {
+            openOverlay(false);
+            leaveTheGame();
+            dispatch(leaveGame());
+          }}
+        >
+          Leave the game
+        </div>
+      );
+    }
+  };
+
   return (
     <>
       <Confirmation
@@ -45,16 +86,7 @@ export const Menu = () => {
               alt=""
               onClick={() => openOverlay(false)}
             />
-            <div
-              className={cx('option')}
-              onClick={() => {
-                showSurrenderConfirm(true);
-                openOverlay(false);
-              }}
-            >
-              Surrender
-            </div>
-            <div className={cx('option')}>Leave the game</div>
+            {renderSurrenderAndLeave()}
             <div className={cx('option')}>Report a player</div>
           </div>
         )}

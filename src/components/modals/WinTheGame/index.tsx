@@ -3,7 +3,12 @@ import { ModalLayout } from '../../common/ModalLayout';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearActiveGame, gameState } from '../../../store/game';
+import {
+  clearActiveGame,
+  gameState,
+  leaveGame,
+  PlayerStatus,
+} from '../../../store/game';
 import { userState } from '../../../store/user';
 import { useNavigate } from 'react-router-dom';
 import { navigationPaths } from '../../../config/navigationPaths';
@@ -17,11 +22,12 @@ export const WinTheGame = () => {
   const user = useSelector(userState);
 
   const winner = activeGame?.players.find(
-    (p) => p.status === 'win' && p.id === user.data.id,
+    (p) => p.status === PlayerStatus.Win && p.id === user.data.id,
   );
 
   const goBack = () => {
     dispatch(clearActiveGame());
+    dispatch(leaveGame());
     navigate(navigationPaths.mainRoom);
   };
 

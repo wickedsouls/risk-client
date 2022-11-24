@@ -7,4 +7,5 @@ export enum ModalType {
   ContinentTaken = 'ContinentTaken',
   Defeat = 'Defeat',
   Win = 'Win',
+  Surrender = 'Surrender',
 }

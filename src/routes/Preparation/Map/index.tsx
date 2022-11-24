@@ -30,7 +30,7 @@ export const Map = () => {
     if (isGameAdmin) {
       dispatch(openModal(ModalType.CancelGame));
     } else {
-      dispatch(leaveGame({ gameId: activeGame.gameId }));
+      dispatch(leaveGame());
       navigate(navigationPaths.mainRoom);
     }
   };

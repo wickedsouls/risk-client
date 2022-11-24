@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
-import { Player } from '../../../store/game';
+import { Player, PlayerStatus } from '../../../store/game';
 import { playerColors } from '../../../common/playerColors';
 
 const cx = classNames.bind(styles);
@@ -15,14 +15,14 @@ export const PlayerList: React.FC<Props> = ({ players, currentPlayerId }) => {
   if (!players || !currentPlayerId) return null;
   const renderPlayers = () => {
     return players.map((player) => {
-      console.log(player);
       const color = playerColors[player.color || ''];
       return (
         <div
           className={cx(
             'player',
             currentPlayerId === player.id && 'player--active',
-            player.status === 'defeat' && 'player--eliminated',
+            player.status === PlayerStatus.Defeat && 'player--eliminated',
+            player.status === PlayerStatus.Surrender && 'player--eliminated',
           )}
           style={{
             borderRight: `6px solid ${color}`,

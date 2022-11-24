@@ -2,7 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Game, Message } from './types';
 import { GameError } from '../../common/types';
 import { ModalType } from '../app';
-import { checkIfContinentWasTaken, checkIfPlayerLost } from './utils';
+import {
+  checkIfContinentWasTaken,
+  checkIfPlayerLost,
+  checkIfPlayerSurrendered,
+} from './utils';
 
 export interface GameState {
   activeGame?: Game;
@@ -44,6 +48,7 @@ export const gameSlice = createSlice({
     clearActiveGame: (state) => {
       state.activeGame = undefined;
       state.chat = [];
+      state.gameModal = {};
       state.interactions = {};
     },
     joinGame: (
@@ -73,6 +78,18 @@ export const gameSlice = createSlice({
         action.payload.players,
         state.activeGame?.turnState,
       );
+      const surrendered = checkIfPlayerSurrendered(
+        state.activeGame?.players,
+        action.payload.players,
+      );
+      if (surrendered) {
+        state.gameModal = {
+          type: ModalType.Surrender,
+          username: surrendered.username,
+          playerId: surrendered.id,
+          color: surrendered.color,
+        };
+      }
       if (eliminated) {
         state.gameModal = {
           type: ModalType.Defeat,
@@ -94,7 +111,7 @@ export const gameSlice = createSlice({
       }
       state.activeGame = action.payload;
     },
-    leaveGame: (state, action: PayloadAction<{ gameId: string }>) => {
+    leaveGame: (state) => {
       state.activeGame = undefined;
     },
     sendMessage: (state, action: PayloadAction<{ message: string }>) => {
@@ -188,8 +205,8 @@ export const gameSlice = createSlice({
       null;
     },
     surrender: (state) => {
-      state.activeGame = undefined;
-      state.chat = [];
+      // state.activeGame = undefined;
+      // state.chat = [];
     },
   },
 });

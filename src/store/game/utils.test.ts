@@ -1,4 +1,4 @@
-import { Continent, Player, TurnState } from './types';
+import { Continent, Player, PlayerStatus, TurnState } from './types';
 import { checkIfContinentWasTaken, checkIfPlayerLost } from './utils';
 
 describe('Continent taken', () => {
@@ -24,7 +24,7 @@ describe('Eliminate player', () => {
     ];
     const nextPlayers: Player[] = [
       { username: 'a', id: '1' },
-      { username: 'b', id: '2', status: 'defeat' },
+      { username: 'b', id: '2', status: PlayerStatus.Defeat },
     ];
     const eliminated = checkIfPlayerLost(
       prevPlayers,
@@ -54,11 +54,11 @@ describe('Eliminate player', () => {
   it('should not find eliminated player when one is out', () => {
     const prevPlayers: Player[] = [
       { username: 'a', id: '1' },
-      { username: 'b', id: '2', status: 'defeat' },
+      { username: 'b', id: '2', status: PlayerStatus.Defeat },
     ];
     const nextPlayers: Player[] = [
       { username: 'a', id: '1' },
-      { username: 'b', id: '2', status: 'defeat' },
+      { username: 'b', id: '2', status: PlayerStatus.Defeat },
     ];
     const eliminated = checkIfPlayerLost(
       prevPlayers,

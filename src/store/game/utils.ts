@@ -1,4 +1,4 @@
-import { Continent, Player, TurnState } from './types';
+import { Continent, Player, PlayerStatus, TurnState } from './types';
 import { values } from 'lodash';
 
 export const checkIfContinentWasTaken = (
@@ -24,8 +24,23 @@ export const checkIfPlayerLost = (
   if (turnState !== TurnState.Attack || !prevPlayers || !nextPlayers) return;
   const eliminated = nextPlayers.find((_, i) => {
     return (
-      prevPlayers[i]?.status !== 'defeat' && nextPlayers[i]?.status === 'defeat'
+      prevPlayers[i]?.status !== PlayerStatus.Defeat &&
+      nextPlayers[i]?.status === PlayerStatus.Defeat
     );
   });
   return eliminated;
+};
+
+export const checkIfPlayerSurrendered = (
+  prevPlayers?: Player[],
+  nextPlayers?: Player[],
+): Player | undefined => {
+  if (!prevPlayers || !nextPlayers) return;
+  const surrendered = nextPlayers.find((_, i) => {
+    return (
+      !prevPlayers[i]?.status &&
+      nextPlayers[i]?.status === PlayerStatus.Surrender
+    );
+  });
+  return surrendered;
 };

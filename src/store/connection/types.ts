@@ -40,7 +40,7 @@ export interface ClientToServerEvents {
     payload: { gameId: string },
     ack: (data: Game | GameError) => void,
   ) => void;
-  'request/LEAVE_GAME': (payload: { gameId: string }) => void;
+  'request/LEAVE_GAME': () => void;
   'request/SEND_MESSAGE': (payload: { message: string }) => void;
   'request/CANCEL_GAME': (payload: { gameId: string }) => void;
   // Gameplay

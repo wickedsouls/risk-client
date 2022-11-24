@@ -1,9 +1,21 @@
 import React from 'react';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
-import { endTurn, finishAttack, Player, TurnState } from '../../../store/game';
+import {
+  clearActiveGame,
+  endTurn,
+  finishAttack,
+  Game,
+  leaveGame,
+  Player,
+  PlayerStatus,
+  TurnState,
+} from '../../../store/game';
 import { useDispatch } from 'react-redux';
 import { svg } from '../../../assets/svg/svg';
+import { useGetMyPlayerData } from '../../../hooks/useGetMyPlayerData';
+import { useNavigate } from 'react-router-dom';
+import { navigationPaths } from '../../../config/navigationPaths';
 
 const cx = classNames.bind(styles);
 
@@ -23,6 +35,29 @@ export const GameControls: React.FC<Props> = ({
   currentPlayer,
 }) => {
   const dispatch = useDispatch();
+  const player = useGetMyPlayerData();
+  const navigate = useNavigate();
+
+  if (
+    player?.status === PlayerStatus.Surrender ||
+    player?.status === PlayerStatus.Defeat
+  ) {
+    const onGameLeave = () => {
+      navigate(navigationPaths.mainRoom);
+      dispatch(clearActiveGame());
+      dispatch(leaveGame());
+    };
+    return (
+      <div className={cx('game-controls')}>
+        <div className={cx('spectate')}>
+          <div className={cx('title')}>You are in spectate mode</div>
+          <div className={cx('leave-game')} onClick={onGameLeave}>
+            Leave the game
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={cx('game-controls')}>
       {!myTurn && (

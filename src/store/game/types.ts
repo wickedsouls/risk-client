@@ -2,7 +2,7 @@ export interface Player {
   id: string;
   username: string;
   color?: string;
-  status?: 'win' | 'defeat' | 'deserter';
+  status?: PlayerStatus;
   title?: string;
 }
 
@@ -18,6 +18,13 @@ export enum GameStatus {
   'InProgress' = 'InProgress',
   'Completed' = 'Completed',
   'Canceled' = 'Canceled',
+}
+
+export enum PlayerStatus {
+  Win = 'Win',
+  Defeat = 'Defeat',
+  Deserter = 'Deserter',
+  Surrender = 'Surrender',
 }
 
 export interface Game {

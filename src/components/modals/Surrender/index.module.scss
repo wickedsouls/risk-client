@@ -1,0 +1,47 @@
+@import "../../../styles/index";
+
+.layout{
+  background: $color-white;
+}
+.modal{
+  width: 400px;
+  background: $color-white;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+.title{
+  color: $color-black;
+  text-align: center;
+  margin-bottom: 20px;
+  .name{
+    text-transform: capitalize;
+    font-weight: 500;
+    padding: 1px 3px;
+    font-size: 28px;
+    @include player-background-color;
+  }
+  span{
+    display: block;
+    margin-top: 15px;
+    font-size: 16px;
+  }
+}
+.defeat{
+  color: $color-black;
+  text-align: center;
+  font-size: 28px;
+}
+.link,
+.spectate{
+  font-size: 14px;
+  text-decoration: underline;
+  padding-top: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.or{
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 10px;
+}

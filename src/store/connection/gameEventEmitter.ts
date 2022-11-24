@@ -60,9 +60,8 @@ export function* gameEventEmitter(socket: ClientSocket) {
         store.dispatch(getAllGamesDone(values(data)));
       });
     }),
-    takeEvery(leaveGame, (action: ReturnType<typeof leaveGame>) => {
-      const { gameId } = action.payload;
-      socket.emit('request/LEAVE_GAME', { gameId });
+    takeEvery(leaveGame, () => {
+      socket.emit('request/LEAVE_GAME');
     }),
     takeEvery(sendMessage, (action: ReturnType<typeof sendMessage>) => {
       socket.emit('request/SEND_MESSAGE', { message: action.payload.message });

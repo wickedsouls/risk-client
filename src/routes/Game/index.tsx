@@ -33,6 +33,7 @@ import { Chat } from './Chat';
 import { WinTheGame } from '../../components/modals/WinTheGame';
 import { ContinentsList } from './ContinentsList';
 import { Menu } from './Menu';
+import { Surrender } from '../../components/modals/Surrender';
 
 const cx = classNames.bind(styles);
 
@@ -128,6 +129,7 @@ export const Game = () => {
       <ContinentTaken />
       <EliminatePlayer />
       <Menu />
+      <Surrender />
       <MoveAction
         onClose={closeMoveModal}
         maxAmount={activeGame.map?.zones[zoneFrom || '']?.armies || 0}

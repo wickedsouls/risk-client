@@ -85,3 +85,18 @@
     }
   }
 }
+
+.spectate{
+
+  .title{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .leave-game{
+    font-size: 14px;
+    text-decoration: underline;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+}

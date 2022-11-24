@@ -3,6 +3,8 @@ import { ModalLayout } from '../../common/ModalLayout';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 import { svg } from '../../../assets/svg/svg';
+import { useGetMyPlayerData } from '../../../hooks/useGetMyPlayerData';
+import { PlayerStatus } from '../../../store/game';
 
 const cx = classNames.bind(styles);
 
@@ -17,7 +19,9 @@ export const YourTurnNotification: React.FC<Props> = ({
   isVisible,
   onClose,
 }) => {
-  if (!isVisible) return null;
+  const player = useGetMyPlayerData();
+
+  if (!isVisible || player?.status === PlayerStatus.Win) return null;
   return (
     <ModalLayout onClose={onClose} className={cx('layout')}>
       <div className={cx('modal')} onClick={onClose}>

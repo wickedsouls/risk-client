@@ -3,7 +3,12 @@ import { ModalLayout } from '../../common/ModalLayout';
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearActiveGame, gameState, showGameModal } from '../../../store/game';
+import {
+  clearActiveGame,
+  gameState,
+  leaveGame,
+  showGameModal,
+} from '../../../store/game';
 import { ModalType } from '../../../store/app';
 import { userState } from '../../../store/user';
 import { navigationPaths } from '../../../config/navigationPaths';
@@ -31,6 +36,7 @@ export const EliminatePlayer = () => {
 
   const goBack = () => {
     dispatch(clearActiveGame());
+    dispatch(leaveGame());
     navigate(navigationPaths.mainRoom);
   };
 

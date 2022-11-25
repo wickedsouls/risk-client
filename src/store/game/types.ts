@@ -4,6 +4,14 @@ export interface Player {
   color?: string;
   status?: PlayerStatus;
   title?: string;
+  cards?: GameCard[];
+}
+
+export enum GameCard {
+  'Jack' = 'Joker',
+  'Queen' = 'Queen',
+  'King' = 'King',
+  'Ace' = 'Ace',
 }
 
 export enum TurnState {
@@ -37,8 +45,10 @@ export interface Game {
   isPrivate?: boolean;
   maxPlayers: number;
   minPlayers: number;
+  setsOfCardsUsed: number;
 
   currentPlayerIndex?: number;
+  armiesFromCards?: number;
   map?: Map<string, string>;
   armiesThisTurn?: number;
   turnState?: TurnState;

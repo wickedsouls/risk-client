@@ -110,6 +110,9 @@ export const gameSlice = createSlice({
         };
       }
       state.activeGame = action.payload;
+      if (action.payload.armiesFromCards) {
+        state.gameModal = { type: ModalType.UsedCards };
+      }
     },
     leaveGame: (state) => {
       state.activeGame = undefined;
@@ -153,6 +156,7 @@ export const gameSlice = createSlice({
     ) => {
       state.activeGame = action.payload.game;
       state.chat = action.payload.chat;
+      state.gameModal = { type: ModalType.UsedCards };
     },
     getGameInfoFailed: (state, action: PayloadAction<GameError>) => {
       state.errors = { gameInfo: action.payload.message };
@@ -208,6 +212,9 @@ export const gameSlice = createSlice({
       // state.activeGame = undefined;
       // state.chat = [];
     },
+    useCards: () => {
+      null;
+    },
   },
 });
 
@@ -242,4 +249,5 @@ export const {
   showGameModal,
   clearActiveGame,
   surrender,
+  useCards,
 } = gameSlice.actions;

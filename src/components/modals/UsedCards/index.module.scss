@@ -1,0 +1,25 @@
+@import "../../../styles/index";
+
+.modal{
+  background: $color-white;
+  border-radius: 8px;
+  width: 400px;
+  .title{
+    font-weight: 400;
+    font-size: 16px;
+  }
+  .player{
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding-left: 4px;
+    @include player-background-color;
+  }
+  .message{
+    padding-top: 20px;
+    display: inline-block;
+  }
+  .army{
+    font-weight: 500;
+  }
+}

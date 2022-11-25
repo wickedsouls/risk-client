@@ -34,6 +34,7 @@ import { WinTheGame } from '../../components/modals/WinTheGame';
 import { ContinentsList } from './ContinentsList';
 import { Menu } from './Menu';
 import { Surrender } from '../../components/modals/Surrender';
+import { UsedCards } from '../../components/modals/UsedCards';
 
 const cx = classNames.bind(styles);
 
@@ -130,6 +131,7 @@ export const Game = () => {
       <EliminatePlayer />
       <Menu />
       <Surrender />
+      <UsedCards />
       <MoveAction
         onClose={closeMoveModal}
         maxAmount={activeGame.map?.zones[zoneFrom || '']?.armies || 0}
@@ -157,6 +159,7 @@ export const Game = () => {
       />
       <WinTheGame />
       <PlayerList
+        user={user.data}
         players={activeGame?.players}
         currentPlayerId={currentPlayerId}
       />

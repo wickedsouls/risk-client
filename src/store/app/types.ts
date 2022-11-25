@@ -8,4 +8,5 @@ export enum ModalType {
   Defeat = 'Defeat',
   Win = 'Win',
   Surrender = 'Surrender',
+  UsedCards = 'UsedCards',
 }

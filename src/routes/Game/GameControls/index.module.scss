@@ -86,6 +86,21 @@
   }
 }
 
+.use-cards{
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: 500;
+  display: inline-block;
+  padding: 3px 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  color: $color-white;
+  @include player-background-color;
+  &--white{
+    color: #000;
+  }
+}
+
 .spectate{
 
   .title{

@@ -19,6 +19,17 @@
   align-items: center;
   border-right: 6px solid #d04d41;
   transition: .2s;
+  z-index: 3;
+  &:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: $color-grey-200;
+    z-index: -1;
+  }
   &--eliminated{
     opacity: .3;
   }
@@ -34,6 +45,13 @@
     left: 0;
     top: 50%;
     transform: translate(-50%, -50%);
+  }
+  .card{
+    position: absolute;
+    left: 20px;
+    bottom: -20px;
+    z-index: -1;
+    width: 18px;
   }
   .title{
     font-size: 12px;

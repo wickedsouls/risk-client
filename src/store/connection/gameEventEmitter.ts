@@ -29,6 +29,7 @@ import {
   startGameDone,
   startGameFailed,
   surrender,
+  useCards,
 } from '../game';
 import { Game } from '../game';
 import { store } from '../index';
@@ -117,6 +118,9 @@ export function* gameEventEmitter(socket: ClientSocket) {
       socket.emit('request/MOVE_ARMY', action.payload, (err) => {
         console.log(err);
       });
+    }),
+    takeEvery(useCards, () => {
+      socket.emit('request/USE_CARDS');
     }),
     takeEvery(finishAttack, () => {
       socket.emit('request/FINISH_ATTACK');

@@ -10,12 +10,14 @@ import {
   Player,
   PlayerStatus,
   TurnState,
+  useCards,
 } from '../../../store/game';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { svg } from '../../../assets/svg/svg';
 import { useGetMyPlayerData } from '../../../hooks/useGetMyPlayerData';
 import { useNavigate } from 'react-router-dom';
 import { navigationPaths } from '../../../config/navigationPaths';
+import { userState } from '../../../store/user';
 
 const cx = classNames.bind(styles);
 
@@ -38,6 +40,8 @@ export const GameControls: React.FC<Props> = ({
   const player = useGetMyPlayerData();
   const navigate = useNavigate();
 
+  const cards = currentPlayer.cards;
+
   if (
     player?.status === PlayerStatus.Surrender ||
     player?.status === PlayerStatus.Defeat
@@ -58,6 +62,15 @@ export const GameControls: React.FC<Props> = ({
       </div>
     );
   }
+
+  const armiesToPlace = () => {
+    return new Array(armiesThisTurn).fill(null).map((_, i) => {
+      return (
+        <img key={i} src={svg.rifleman} className={cx('rifleman')} alt="" />
+      );
+    });
+  };
+
   return (
     <div className={cx('game-controls')}>
       {!myTurn && (
@@ -108,22 +121,19 @@ export const GameControls: React.FC<Props> = ({
       )}
       {myTurn && armiesThisTurn !== 0 && (
         <div className={cx('armies-remaining')}>
-          <div className={cx('title')}>Armies remaining</div>
-          <div className={cx('row')}>
-            {new Array(armiesThisTurn).fill(null).map((_, i) => {
-              return (
-                <img
-                  key={i}
-                  src={svg.rifleman}
-                  className={cx('rifleman')}
-                  alt=""
-                />
-              );
-            })}
-          </div>
+          {/*<div className={cx('title')}>Armies remaining</div>*/}
+          <div className={cx('row')}>{armiesToPlace()}</div>
           <div className={cx('info')}>
             Click on your lands to place the armies
           </div>
+          {cards && cards.length >= 3 && (
+            <div
+              className={cx('use-cards', `use-cards--${currentPlayer.color}`)}
+              onClick={() => dispatch(useCards())}
+            >
+              Use cards to get armies
+            </div>
+          )}
         </div>
       )}
     </div>

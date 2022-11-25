@@ -78,7 +78,8 @@ export const GameControls: React.FC<Props> = ({
           <strong className={cx('name', `name--${currentPlayer.color}`)}>
             {currentPlayer.username}
           </strong>{' '}
-          is now in command!
+          Turn
+          <div className={cx('armies-remaining')}>{armiesToPlace()}</div>
         </div>
       )}
       {myTurn && turnState === TurnState.Move && (

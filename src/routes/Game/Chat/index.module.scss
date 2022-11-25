@@ -26,6 +26,12 @@
       padding-left: 4px;
       overflow-y: auto;
       margin-left: 10px;
+      time{
+        font-size: 8px;
+        line-height: 8px;
+        transform: translateY(-1px);
+        display: inline-block;
+      }
       .name{
         margin-right: 10px;
         text-transform: capitalize;

@@ -11,6 +11,7 @@ import {
   updateZoneFrom,
   updateZoneTo,
   updateZoneSelected,
+  receiveMessages,
 } from '../game';
 import { getAllGamesDone } from '../main-room';
 import { setConnected } from '../app';
@@ -27,8 +28,11 @@ export function gameEventReceiver(socket: ClientSocket) {
     socket.on('set/LEAVE_GAME', (data) => {
       emit(updateGame(data));
     });
-    socket.on('set/MESSAGES', (data) => {
+    socket.on('set/MESSAGE', (data) => {
       emit(receiveMessage(data));
+    });
+    socket.on('set/MESSAGES', (data) => {
+      emit(receiveMessages(data));
     });
     socket.on('set/CANCEL_GAME', () => {
       emit(cancelGameDone());

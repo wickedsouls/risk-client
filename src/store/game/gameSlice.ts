@@ -137,6 +137,9 @@ export const gameSlice = createSlice({
     receiveMessage: (state, action: PayloadAction<Message>) => {
       state.chat.push(action.payload);
     },
+    receiveMessages: (state, action: PayloadAction<Message[]>) => {
+      state.chat = action.payload;
+    },
     startGame: (state, action: PayloadAction<{ gameId: string }>) => {
       null;
     },
@@ -226,6 +229,7 @@ export const {
   leaveGame,
   sendMessage,
   receiveMessage,
+  receiveMessages,
   cancelGame,
   cancelGameDone,
   clearGames,

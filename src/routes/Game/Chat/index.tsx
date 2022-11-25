@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { gameState } from '../../../store/game';
 import { svg } from '../../../assets/svg/svg';
 import { useChat } from '../../../hooks/useChat';
+import moment from 'moment';
 
 const cx = classNames.bind(styles);
 
@@ -35,6 +36,13 @@ export const Chat = () => {
 
   const renderMessages = () => {
     return chat?.map((message, i) => {
+      if (!message.message) {
+        return (
+          <p className={cx('message')} key={i}>
+            ---- <time>{moment().format('hh:mm:ss')}</time> ---
+          </p>
+        );
+      }
       return (
         <p className={cx('message')} key={i}>
           <strong

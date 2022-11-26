@@ -88,14 +88,10 @@ export function* gameEventEmitter(socket: ClientSocket) {
         );
       });
     }),
-    takeEvery(endTurn, (action: ReturnType<typeof endTurn>) => {
-      socket.emit(
-        'request/END_TURN',
-        { gameId: action.payload.gameId },
-        (data) => {
-          console.log(data);
-        },
-      );
+    takeEvery(endTurn, () => {
+      socket.emit('request/END_TURN', (data) => {
+        console.log(data);
+      });
     }),
     takeEvery(placeArmies, (action: ReturnType<typeof placeArmies>) => {
       const { zone } = action.payload;

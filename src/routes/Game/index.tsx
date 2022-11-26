@@ -177,6 +177,7 @@ export const Game = () => {
         />
       </div>
       <GameControls
+        timeout={activeGame.timeout}
         gameId={gameId}
         currentPlayer={activeGame.currentPlayer}
         turnState={activeGame.turnState}

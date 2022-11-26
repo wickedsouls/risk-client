@@ -164,7 +164,7 @@ export const gameSlice = createSlice({
     getGameInfoFailed: (state, action: PayloadAction<GameError>) => {
       state.errors = { gameInfo: action.payload.message };
     },
-    endTurn: (state, action: PayloadAction<{ gameId: string }>) => {
+    endTurn: () => {
       null;
     },
     placeArmies: (state, action: PayloadAction<{ zone: string }>) => {

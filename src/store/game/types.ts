@@ -47,6 +47,7 @@ export interface Game {
   minPlayers: number;
   setsOfCardsUsed: number;
 
+  timeout?: number;
   currentPlayerIndex?: number;
   armiesFromCards?: number;
   map?: Map<string, string>;

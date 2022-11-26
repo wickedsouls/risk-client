@@ -17,7 +17,6 @@ import { svg } from '../../../assets/svg/svg';
 import { useGetMyPlayerData } from '../../../hooks/useGetMyPlayerData';
 import { useNavigate } from 'react-router-dom';
 import { navigationPaths } from '../../../config/navigationPaths';
-import { userState } from '../../../store/user';
 
 const cx = classNames.bind(styles);
 
@@ -25,16 +24,17 @@ interface Props {
   myTurn?: boolean;
   armiesThisTurn?: number;
   gameId: string;
+  timeout?: number;
   turnState?: TurnState;
   currentPlayer: Player;
 }
 
 export const GameControls: React.FC<Props> = ({
-  gameId,
   myTurn,
   armiesThisTurn,
   turnState,
   currentPlayer,
+  timeout,
 }) => {
   const dispatch = useDispatch();
   const player = useGetMyPlayerData();
@@ -70,7 +70,7 @@ export const GameControls: React.FC<Props> = ({
       );
     });
   };
-
+  console.log(timeout);
   return (
     <div className={cx('game-controls')}>
       {!myTurn && (
@@ -85,7 +85,7 @@ export const GameControls: React.FC<Props> = ({
       {myTurn && turnState === TurnState.Move && (
         <div className={cx('move')}>
           <div
-            onClick={() => dispatch(endTurn({ gameId }))}
+            onClick={() => dispatch(endTurn())}
             className={cx('button', `button--${currentPlayer.color}`)}
           >
             End turn
@@ -102,7 +102,7 @@ export const GameControls: React.FC<Props> = ({
         <div className={cx('attack')}>
           <div className={cx('row')}>
             <div
-              onClick={() => dispatch(endTurn({ gameId }))}
+              onClick={() => dispatch(endTurn())}
               className={cx('button', `button--${currentPlayer.color}`)}
             >
               End turn
@@ -136,6 +136,14 @@ export const GameControls: React.FC<Props> = ({
             </div>
           )}
         </div>
+      )}
+      {myTurn && (
+        <div
+          className={cx('timer')}
+          style={{
+            animationDuration: `${timeout}ms`,
+          }}
+        />
       )}
     </div>
   );

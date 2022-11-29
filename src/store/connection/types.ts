@@ -62,6 +62,7 @@ export interface ClientToServerEvents {
   'request/SELECT_ZONE_TO': (payload: { zone?: string }) => void;
   'request/FINISH_ATTACK': () => void;
   'request/SURRENDER': () => void;
+  'request/ADD_AI_PLAYER': () => void;
   'request/USE_CARDS': () => void;
 }
 

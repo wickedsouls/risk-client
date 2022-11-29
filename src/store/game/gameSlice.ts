@@ -7,6 +7,7 @@ import {
   checkIfPlayerLost,
   checkIfPlayerSurrendered,
 } from './utils';
+import { createGameDone } from '../main-room';
 
 export interface GameState {
   activeGame?: Game;
@@ -218,6 +219,15 @@ export const gameSlice = createSlice({
     useCards: () => {
       null;
     },
+    addAiPlayer: () => {
+      null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(createGameDone, (state, action) => {
+      state.gameCanceled = false;
+      state.activeGame = action.payload;
+    });
   },
 });
 
@@ -254,4 +264,5 @@ export const {
   clearActiveGame,
   surrender,
   useCards,
+  addAiPlayer,
 } = gameSlice.actions;

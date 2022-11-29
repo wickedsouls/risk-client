@@ -33,6 +33,7 @@ export enum PlayerStatus {
   Defeat = 'Defeat',
   Deserter = 'Deserter',
   Surrender = 'Surrender',
+  InGame = 'InGame',
 }
 
 export interface Game {

@@ -8,6 +8,7 @@ import {
   getAllGamesDone,
 } from '../main-room';
 import {
+  addAiPlayer,
   attackPlayer,
   cancelGame,
   endTurn,
@@ -52,7 +53,6 @@ export function* gameEventEmitter(socket: ClientSocket) {
     }),
     takeEvery(createGame, (action: ReturnType<typeof createGame>) => {
       socket.emit('request/CREATE_GAME', action.payload, (data) => {
-        logData(data);
         dispatchData<Game>(data, createGameDone, createGameFailed);
       });
     }),
@@ -123,6 +123,9 @@ export function* gameEventEmitter(socket: ClientSocket) {
     }),
     takeEvery(surrender, () => {
       socket.emit('request/SURRENDER');
+    }),
+    takeEvery(addAiPlayer, () => {
+      socket.emit('request/ADD_AI_PLAYER');
     }),
   ]);
 }

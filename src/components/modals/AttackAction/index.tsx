@@ -55,7 +55,7 @@ export const AttackAction: React.FC<Props> = ({
           <div className={cx('increment')} onClick={increment} />
         </div>
         <div className={cx('button')} onClick={() => onAttack(amount)}>
-          Attack
+          Pulti
         </div>
       </div>
     </ModalLayout>

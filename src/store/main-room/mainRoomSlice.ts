@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Game } from '../game/types';
+import { Game } from '../game';
 import { CreateGame } from './types';
 import { GameError } from '../../common/types';
 
@@ -41,7 +41,7 @@ export const mainRoomSlice = createSlice({
       state.create.isLoading = false;
       state.create.error = action.payload.message;
     },
-    createGameDone: (state) => {
+    createGameDone: (state, action: PayloadAction<Game>) => {
       state.create.isLoading = false;
       state.create.error = undefined;
       state.create.success = true;

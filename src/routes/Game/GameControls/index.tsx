@@ -63,6 +63,10 @@ export const GameControls: React.FC<Props> = ({
     );
   }
 
+  if (player?.status === PlayerStatus.Win) {
+    return null;
+  }
+
   const armiesToPlace = () => {
     return new Array(armiesThisTurn).fill(null).map((_, i) => {
       return (
@@ -70,7 +74,7 @@ export const GameControls: React.FC<Props> = ({
       );
     });
   };
-  console.log(timeout);
+
   return (
     <div className={cx('game-controls')}>
       {!myTurn && (

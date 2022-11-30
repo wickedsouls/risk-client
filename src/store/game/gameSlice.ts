@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Game, Message } from './types';
+import { Game, Map, Message } from './types';
 import { GameError } from '../../common/types';
 import { ModalType } from '../app';
 import {
@@ -42,6 +42,7 @@ export const gameSlice = createSlice({
         type?: ModalType;
         message?: string;
         title?: string;
+        [key: string]: string | undefined;
       }>,
     ) => {
       state.gameModal = action.payload;
@@ -189,6 +190,21 @@ export const gameSlice = createSlice({
     updateZoneSelected: (state, action: PayloadAction<{ zone?: string }>) => {
       state.interactions.zoneSelected = action.payload.zone;
     },
+    onBotAttack: (
+      state,
+      action: PayloadAction<{ game: Game; chat: Message[] }>,
+    ) => {
+      null;
+    },
+    botAttackSuccess: (
+      state,
+      action: PayloadAction<{ map: Map<string, string>; chat: Message[] }>,
+    ) => {
+      if (state.activeGame?.map) {
+        state.activeGame.map = action.payload.map;
+      }
+      state.chat = action.payload.chat;
+    },
     attackPlayer: (
       state,
       action: PayloadAction<{
@@ -236,6 +252,8 @@ export const {
   joinGameFailed,
   joinGame,
   updateGame,
+  onBotAttack,
+  botAttackSuccess,
   leaveGame,
   sendMessage,
   receiveMessage,

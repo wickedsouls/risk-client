@@ -58,7 +58,9 @@ function logoutRequest() {
 }
 
 export function* authSaga() {
-  yield all([takeLatest(register, registerRequest)]);
-  yield all([takeLatest(login, loginRequest)]);
-  yield all([takeLatest(logout, logoutRequest)]);
+  yield all([
+    takeLatest(register, registerRequest),
+    takeLatest(login, loginRequest),
+    takeLatest(logout, logoutRequest),
+  ]);
 }

@@ -17,6 +17,7 @@ export interface ServerToClientEvents {
   'set/SELECT_ZONE_FROM': (payload: { zone?: string }) => void;
   'set/SELECT_ZONE_TO': (payload: { zone?: string }) => void;
   'set/SELECT_ZONE': (payload: { zone?: string }) => void;
+  'set/BOT_ATTACK': (payload: { game: Game; chat: Message[] }) => void;
 }
 
 export interface ClientToServerEvents {

@@ -12,6 +12,7 @@ import {
   updateZoneTo,
   updateZoneSelected,
   receiveMessages,
+  onBotAttack,
 } from '../game';
 import { getAllGamesDone } from '../main-room';
 import { setConnected } from '../app';
@@ -42,6 +43,9 @@ export function gameEventReceiver(socket: ClientSocket) {
     });
     socket.on('set/UPDATE_GAME', (data) => {
       emit(updateGame(data));
+    });
+    socket.on('set/BOT_ATTACK', (data) => {
+      emit(onBotAttack(data));
     });
     socket.on('set/SELECT_ZONE_FROM', (data) => {
       emit(updateZoneFrom(data));
